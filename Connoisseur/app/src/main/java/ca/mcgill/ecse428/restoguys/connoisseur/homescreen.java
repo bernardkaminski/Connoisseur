@@ -1,6 +1,7 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -159,5 +160,15 @@ public class HomeScreen extends ActionBarActivity {
 	private void delayedHide(int delayMillis) {
 		mHideHandler.removeCallbacks(mHideRunnable);
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
+	}
+
+	/** Called when the user clicks the history button */
+	public void sendHistory(View view) {
+		// Do something in response to button
+		Intent intent = new Intent(this, History.class);
+		String message = "testing history";
+		intent.putExtra("main.history", message);
+		startActivity(intent);
+
 	}
 }
