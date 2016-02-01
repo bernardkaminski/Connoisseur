@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold"/>
@@ -42,9 +41,38 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button"/>
+                android:text="Search"/>
 
         </LinearLayout>
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Cost"
+            android:layout_gravity="left|center_vertical"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Distance"
+            android:layout_gravity="center_vertical|right"
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Title"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Connoisseur" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Type"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center" />
+
     </FrameLayout>
 
 </FrameLayout>
