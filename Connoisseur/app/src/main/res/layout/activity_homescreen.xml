@@ -59,11 +59,12 @@
             android:layout_gravity="center_vertical|right"
             android:spinnerMode="dropdown" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Title"
             android:layout_gravity="center_horizontal|top"
+            android:textSize="@dimen/abc_text_size_headline_material"
             android:text="Connoisseur" />
 
         <Spinner

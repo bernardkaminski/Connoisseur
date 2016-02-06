@@ -48,8 +48,7 @@
         android:id="@+id/imageButton"
         android:src="@drawable/yelp_carlos"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:elevation="@dimen/abc_action_bar_content_inset_material" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
