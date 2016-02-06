@@ -1,11 +1,10 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -13,7 +12,7 @@ import android.view.View;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class HomeScreen extends ActionBarActivity {
+public class HomeScreen extends AppCompatActivity {
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -88,7 +87,7 @@ public class HomeScreen extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_homescreen);
+		setContentView(R.layout.activity_home_screen);
 
 		mVisible = true;
 		mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -160,15 +159,5 @@ public class HomeScreen extends ActionBarActivity {
 	private void delayedHide(int delayMillis) {
 		mHideHandler.removeCallbacks(mHideRunnable);
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
-	}
-
-	/** Called when the user clicks the history button */
-	public void sendHistory(View view) {
-		// Do something in response to button
-		Intent intent = new Intent(this, History.class);
-		String message = "testing history";
-		intent.putExtra("main.history", message);
-		startActivity(intent);
-
 	}
 }
