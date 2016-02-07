@@ -8,9 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Class that controls the logic of the history page
+ */
 public class History extends ActionBarActivity {
 
-
+    /**
+     * Creattion of the history page, gets info passed from min screen and displays some info.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,11 @@ public class History extends ActionBarActivity {
 
     }
 
+    /**
+     *
+     * Function that will open restaurant info when an item is clicked in list S
+     * @param view
+     */
     public void openRestoinfo(View view) {
         TextView t = (TextView) view;
         CharSequence resto = t.getText();
