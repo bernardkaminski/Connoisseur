@@ -106,7 +106,14 @@ public class HomeScreen extends ActionBarActivity {
 		// Upon interacting with UI controls, delay any scheduled hide()
 		// operations to prevent the jarring behavior of controls going away
 		// while interacting with the UI.
-		findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+		//findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+		findViewById(R.id.dummy_button).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(HomeScreen.this, RestaurantDetails.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
