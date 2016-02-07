@@ -8,9 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Class that controls logic for history screen
+ */
 public class History extends ActionBarActivity {
 
-
+    /**
+     * Method that is called on creation of screen, it populate the list view
+     * @param savedInstanceState
+     * state passed to screen
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,12 @@ public class History extends ActionBarActivity {
 
     }
 
+    /**
+     * function called when an item is clicked in the list
+     * @param view
+     * The list item clicked
+     *
+     */
     public void openRestoinfo(View view) {
         TextView t = (TextView) view;
         CharSequence resto = t.getText();
