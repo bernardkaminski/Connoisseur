@@ -1,5 +1,7 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -42,6 +44,22 @@ public class History extends ActionBarActivity {
     public void openRestoinfo(View view) {
         TextView t = (TextView) view;
         CharSequence resto = t.getText();
+        new AlertDialog.Builder(this)
+                .setTitle("Resto Info")
+                .setMessage(resto)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with something
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 
 }
