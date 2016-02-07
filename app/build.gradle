@@ -15,4 +15,5 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.yelp.clientlib:yelp-android:1.0.0'
 }
