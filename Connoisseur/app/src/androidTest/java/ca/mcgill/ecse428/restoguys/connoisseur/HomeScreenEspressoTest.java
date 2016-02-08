@@ -38,14 +38,14 @@ public class HomeScreenEspressoTest {
         // Check Options to be displayed.
         onView(withId(R.id.Cost))
                 .perform(click())
-                .check(matches());
+                .check(matches(isDisplayed()));
 
         onView(withId(R.id.Distance))
                 .perform(click())
-                .check(matches());
+                .check(matches(isDisplayed()));
 
         onView(withId(R.id.Type))
                 .perform(click())
-                .check(matches());
+                .check(matches(isDisplayed()));
     }
 }
