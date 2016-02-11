@@ -22,40 +22,34 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class HomeScreenEspressoTest {
 
-    private String mStringToBetyped;
-
     @Rule
     public ActivityTestRule<HomeScreen> mActivityRule = new ActivityTestRule<>(HomeScreen.class);
-
-    @Before
-    public void initValidString() {
-        // Specify a valid string.
-        mStringToBetyped = "testText";
-    }
 
     @Test
     public void checkViewsTest() {
         // Test Title to be displayed.
         onView(withId(R.id.Title))
-                .perform(replaceText(mStringToBetyped))
-                .check(matches(withText(mStringToBetyped)));
-
-        //Test Search Button to be displayed
-        onView(withId(R.id.activity_homescreen_layout_buttons))
-                .perform(replaceText(mStringToBetyped))
-                .check(matches(withText(mStringToBetyped)));
-
-        // Check Options to be displayed.
-        onView(withId(R.id.activity_homescreen_spinner_Cost))
-                .perform(click())
-                .check(matches(isDisplayed()));
-
-        onView(withId(R.id.activity_homescreen_spinner_Distance))
-                .perform(click())
-                .check(matches(isDisplayed()));
-
-        onView(withId(R.id.activity_homescreen_spinner_RestaurantType))
-                .perform(click())
                 .check(matches(isDisplayed()));
     }
+
+
+    @Test
+    public void checkViewsTest2() {
+        // Check Options to be displayed.
+        onView(withId(R.id.activity_homescreen_spinner_Cost))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkViewsTest3() {
+                onView(withId(R.id.activity_homescreen_spinner_Distance))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkViewsTest4() {
+        onView(withId(R.id.activity_homescreen_spinner_RestaurantType))
+                .check(matches(isDisplayed()));
+    }
+
 }

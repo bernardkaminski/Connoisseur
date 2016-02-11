@@ -28,7 +28,7 @@ public class HistoryEspressoTest {
     @Test
     public void checkViewsTest() {
         // Test the adapter view.
-        onData(withId(R.id.list_item))
+        onData(withId(R.id.text1))
                 .check(matches(isDisplayed()));
 
 

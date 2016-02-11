@@ -35,28 +35,39 @@ public class RestaurantDetailsEspressoTest {
     public void checkViewsTest() {
         // Test The restaurant name to be displayed.
         onView(withId(R.id.restaurantName))
-                .perform(replaceText(mStringToBetyped))
-                .check(matches(withText(mStringToBetyped)));
-
-        //Test The restaurant image  to be displayed
-        onView(withId(R.id.restaurantImage))
                 .check(matches(isDisplayed()));
+    }
 
+    @Test
+    public void checkViewsTest2() {
         //Test The restaurant description text change
         onView(withId(R.id.text_description))
                 .perform(replaceText(mStringToBetyped))
                 .check(matches(withText(mStringToBetyped)));
+    }
 
+    @Test
+    public void checkViewsTest3() {
         //Test The button  to be displayed
         onView(withId(R.id.googleMaps))
                 .check(matches(isDisplayed()));
+    }
 
+    @Test
+    public void checkViewsTest4() {
         //Test The button to be displayed
         onView(withId(R.id.accept))
                 .check(matches(isDisplayed()));
+    }
 
+    @Test
+    public void checkViewsTest5() {
         //Test button to be displayed
         onView(withId(R.id.reject))
                 .check(matches(isDisplayed()));
     }
+
+
+
+
 }
