@@ -43,5 +43,5 @@
                 android:value="ca.mcgill.ecse428.restoguys.connoisseur.HomeScreen"/>
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
