@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="ca.mcgill.ecse428.restoguys.connoisseur"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -7,29 +8,39 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
             android:name=".HomeScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- HISTORY -->
         <activity
             android:name=".History"
             android:label="@string/title_activity_history"
+            android:parentActivityName=".RestaurantSelection">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantSelection"/>
+        </activity>
+
+        <!-- RESTAURANT DETAILS -->
+        <activity android:name=".RestaurantDetails">
+        </activity>
+        <activity
+            android:name=".RestaurantSelection"
+            android:label="@string/title_activity_restaurant_selection"
             android:parentActivityName=".HomeScreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeScreen"/>
-        </activity>
-        <activity android:name=".RestaurantSelection">
-        </activity>
-        <activity android:name=".RestaurantDetails">
+                android:value="ca.mcgill.ecse428.restoguys.connoisseur.HomeScreen"/>
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

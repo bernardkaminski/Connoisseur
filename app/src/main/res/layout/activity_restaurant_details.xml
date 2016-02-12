@@ -8,6 +8,7 @@
     android:background="#0099cc"
     tools:context="ca.mcgill.ecse428.restoguys.connoisseur.RestaurantDetails">
 
+
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="wrap_content"
@@ -78,5 +79,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"/>
+
     </RelativeLayout>
+
+
 </LinearLayout>

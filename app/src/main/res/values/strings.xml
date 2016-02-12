@@ -1,7 +1,36 @@
 <resources>
+
+    <!--                   -->
+
     <string name="app_name">Connoisseur</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_history">History</string>
+    <string name="title_activity_restaurant_selection">Restaurant Selection</string>
+
+
+    <!-- HomeScreen Strings -->
+
+    <string-array name="homescreen_array_options_distance">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>25 km</item>
+        <item>50 km</item>
+    </string-array>
+
+    <string-array name="homescreen_array_options_food_cost">
+        <item>All</item>
+        <item>$</item>
+        <item>$$</item>
+        <item>$$$</item>
+    </string-array>
+
+    <string-array name="homescreen_array_options_restaurant_type">
+        <item>Diner</item>
+        <item>Fast Food</item>
+        <item>Formal</item>
+    </string-array>
+
+
 </resources>
