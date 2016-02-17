@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.restoguys.connoisseur;
+package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import ca.mcgill.ecse428.restoguys.connoisseur.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

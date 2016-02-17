@@ -1,6 +1,8 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

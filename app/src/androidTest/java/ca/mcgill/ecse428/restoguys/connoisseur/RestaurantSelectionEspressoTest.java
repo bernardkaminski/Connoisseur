@@ -1,8 +1,8 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
-import ca.mcgill.ecse428.restoguys.connoisseur.RestaurantDetails;
-import ca.mcgill.ecse428.restoguys.connoisseur.RestaurantSelection;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantDetails;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection;
 
 import org.hamcrest.Matcher;
 import org.junit.Before;

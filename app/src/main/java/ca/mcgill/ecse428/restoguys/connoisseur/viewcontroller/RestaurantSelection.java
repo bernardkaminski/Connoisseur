@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.restoguys.connoisseur;
+package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import ca.mcgill.ecse428.restoguys.connoisseur.R;
 
 public class RestaurantSelection extends ActionBarActivity {
 

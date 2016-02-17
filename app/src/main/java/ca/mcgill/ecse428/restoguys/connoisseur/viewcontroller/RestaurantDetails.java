@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.restoguys.connoisseur;
+package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import retrofit.Call;
 
 public class RestaurantDetails extends ActionBarActivity {
