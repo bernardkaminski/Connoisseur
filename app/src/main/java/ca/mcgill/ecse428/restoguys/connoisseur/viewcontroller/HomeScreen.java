@@ -2,6 +2,7 @@ package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -10,18 +11,27 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class HomeScreen extends ActionBarActivity {
+public class HomeScreen extends ActionBarActivity implements
+		ConnectionCallbacks,  OnConnectionFailedListener{
 
 	private Spinner spinnerOptionDistance;
 	private Spinner spinnerOptionCost;
 	private Spinner spinnerOptionRestaurantType;
+	private GoogleApiClient mGoogleApiClient;
+	private Location mLastLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +40,9 @@ public class HomeScreen extends ActionBarActivity {
 		setContentView(R.layout.activity_homescreen);
 
 		populateSpinners();
+		createGoogleAPIClient();
+
+
 
 	}
 
@@ -69,6 +82,17 @@ public class HomeScreen extends ActionBarActivity {
 
 	}
 
+	private void createGoogleAPIClient()
+	{
+		if (mGoogleApiClient == null) {
+			mGoogleApiClient = new GoogleApiClient.Builder(this)
+					.addConnectionCallbacks(this)
+					.addOnConnectionFailedListener(this)
+					.addApi(LocationServices.API)
+					.build();
+		}
+
+	}
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -93,4 +117,23 @@ public class HomeScreen extends ActionBarActivity {
 		Intent intent = new Intent(this, RestaurantSelection.class);
 		startActivity(intent);
 	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+				mGoogleApiClient);
+		if (mLastLocation != null) {
+
+		}
+	}
+	@Override
+	public void onConnectionSuspended(int cause) {
+		mGoogleApiClient.connect();
+	}
+	@Override
+	public void onConnectionFailed(ConnectionResult result) {
+
+
+	}
+
 }

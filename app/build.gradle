@@ -45,4 +45,5 @@ dependencies {
     }
     compile 'junit:junit:4.12'
     compile files('libs/xstream-1.4.7.jar')
+    compile 'com.google.android.gms:play-services:7.3.0'
 }
