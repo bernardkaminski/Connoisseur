@@ -19,19 +19,18 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
+import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelp;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class HomeScreen extends ActionBarActivity implements
-		ConnectionCallbacks,  OnConnectionFailedListener{
+public class HomeScreen extends ActionBarActivity {
 
 	private Spinner spinnerOptionDistance;
 	private Spinner spinnerOptionCost;
 	private Spinner spinnerOptionRestaurantType;
-	private GoogleApiClient mGoogleApiClient;
-	private Location mLastLocation;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +39,6 @@ public class HomeScreen extends ActionBarActivity implements
 		setContentView(R.layout.activity_homescreen);
 
 		populateSpinners();
-		createGoogleAPIClient();
-
-
 
 	}
 
@@ -82,17 +78,7 @@ public class HomeScreen extends ActionBarActivity implements
 
 	}
 
-	private void createGoogleAPIClient()
-	{
-		if (mGoogleApiClient == null) {
-			mGoogleApiClient = new GoogleApiClient.Builder(this)
-					.addConnectionCallbacks(this)
-					.addOnConnectionFailedListener(this)
-					.addApi(LocationServices.API)
-					.build();
-		}
 
-	}
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -115,25 +101,10 @@ public class HomeScreen extends ActionBarActivity implements
 	 */
 	public void goToRestaurantSelection(View view) {
 		Intent intent = new Intent(this, RestaurantSelection.class);
+		intent.putExtra("radius",15000);
 		startActivity(intent);
 	}
 
-	@Override
-	public void onConnected(Bundle connectionHint) {
-		mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-				mGoogleApiClient);
-		if (mLastLocation != null) {
 
-		}
-	}
-	@Override
-	public void onConnectionSuspended(int cause) {
-		mGoogleApiClient.connect();
-	}
-	@Override
-	public void onConnectionFailed(ConnectionResult result) {
-
-
-	}
 
 }
