@@ -16,13 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ca.mcgill.ecse428.restoguys.connoisseur.R;
+//import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import retrofit.Call;
 
 public class Yelper extends AsyncTask<Void,Void,ArrayList<Business>> {
 
 	/**
-	 * Constants: Yelp API Credentials
+	 * Constants: YelpSearch API Credentials
 	 */
 	private static final String CONSUMER_KEY = "3Jc_WfUzhDWVbafvCJ_pHg";
 	private static final String CONSUMER_SECRET = "qUHC2DJBzA0kFB8KsWxXnmSGR-A";
@@ -83,11 +83,11 @@ public class Yelper extends AsyncTask<Void,Void,ArrayList<Business>> {
 		// This is the array adapter, it takes the context of the activity as a
 		// first parameter, the type of list view as a second parameter and your
 		// array as a third parameter.
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-				context,
-				R.layout.activity_listview,
-				businessNames);
-
-		listview.setAdapter(arrayAdapter);
+//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+//				context,
+//				R.layout.activity_listview,
+//				businessNames);
+//
+//		listview.setAdapter(arrayAdapter);
 	}
 }

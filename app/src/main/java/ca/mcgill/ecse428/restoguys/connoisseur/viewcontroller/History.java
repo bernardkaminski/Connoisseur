@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewadapter.ListViewAdapterBusinesses;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelper;
 
 /**
@@ -17,9 +19,7 @@ import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelper;
  */
 public class History extends ActionBarActivity {
 
-    /**
-     * Instance Variables
-     */
+    /** Instance Variables */
     private ListView listview;
 
     /**
@@ -33,9 +33,6 @@ public class History extends ActionBarActivity {
         setContentView(R.layout.activity_history);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //
-        Intent intent = getIntent();
-
         // Set instance variables
         listview = (ListView) findViewById(R.id.listView2);
 
@@ -45,12 +42,14 @@ public class History extends ActionBarActivity {
     }
 
     /**
-     * Populates listview on screen with blah blah blah
+     * Populates listview on screen with items in ApplicationData history.
      */
     private void populateListView () {
 
-        Yelper yelp = new Yelper(listview, History.this);
-        yelp.execute();
+        listview.setAdapter(new ListViewAdapterBusinesses(
+                this,
+                ApplicationData.getInstance().getListHistory()
+        ));
 
     }
 

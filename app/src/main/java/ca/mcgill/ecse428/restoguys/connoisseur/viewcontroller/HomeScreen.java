@@ -1,25 +1,17 @@
 package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
+//import ca.mcgill.ecse428.restoguys.connoisseur.R;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
-import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelp;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -100,9 +92,22 @@ public class HomeScreen extends ActionBarActivity {
 	 * @param view
 	 */
 	public void goToRestaurantSelection(View view) {
-		Intent intent = new Intent(this, RestaurantSelection.class);
-		intent.putExtra("radius",15000);
-		startActivity(intent);
+
+		// Grab User Search Parameter: Search Radius
+		String selectedDistanceString = spinnerOptionDistance.getSelectedItem().toString();
+		Pattern startOfResultXML = Pattern.compile(" km");
+        Matcher resultMatcher = startOfResultXML.matcher(selectedDistanceString);
+		selectedDistanceString = resultMatcher.replaceAll("");
+		int searchRadius = Integer.parseInt(selectedDistanceString) * 1000;
+
+		// Grab User Search Parameter:
+
+		// Grab User Search Parameter:
+
+		// Create new searchIntent and move to restaurant selection activity.
+		Intent searchIntent = new Intent(this, RestaurantSelection.class);
+		searchIntent.putExtra("radius",searchRadius);
+		startActivity(searchIntent);
 	}
 
 

@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
         <activity
             android:name=".viewcontroller.HomeScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -34,14 +35,19 @@
         <!-- RESTAURANT DETAILS -->
         <activity android:name=".viewcontroller.RestaurantDetails">
         </activity>
+
+        <!-- RESTAURANT SELECTION -->
+        <!-- Don't change anything in this activity -Nicolas. -->
         <activity
             android:name=".viewcontroller.RestaurantSelection"
             android:label="@string/title_activity_restaurant_selection"
+            android:launchMode="singleTop"
             android:parentActivityName=".viewcontroller.HomeScreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen"/>
+                android:value=".viewcontroller.HomeScreen"/>
         </activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>

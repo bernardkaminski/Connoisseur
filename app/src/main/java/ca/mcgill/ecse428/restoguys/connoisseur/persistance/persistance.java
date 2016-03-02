@@ -20,8 +20,8 @@ public class Persistance {
 	/**
 	 * Public method call for saveStateProtected.
 	 */
-	public static boolean saveState (Object objectToSave, Context contextFrom) {
-		return saveStateProtected(objectToSave, contextFrom);
+	public static boolean saveState (Context contextFrom) {
+		return saveStateProtected(ApplicationData.getInstance(), contextFrom);
 	}
 
 
@@ -63,10 +63,11 @@ public class Persistance {
 	/**
 	 * Public call to loadStateProtected
 	 * @param contextFrom
-	 * @return
+	 * @return True if saved data was loaded correctly. False if not.
 	 */
-	public static Object loadState (Context contextFrom) {
-		return loadStateProtected(contextFrom);
+	public static boolean loadState (Context contextFrom) {
+		ApplicationData.getInstance().setApplicationData((ApplicationData) loadStateProtected(contextFrom));
+		return !(ApplicationData.getInstance() == null);
 	}
 
 	/**

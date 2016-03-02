@@ -9,6 +9,7 @@
     <string name="title_activity_history">History</string>
     <string name="title_activity_restaurant_selection">Restaurant Selection</string>
 
+    <string name="restaurant_selection_error_no_more_results">There are no more search results.</string>
 
     <!-- HomeScreen Strings -->
 
