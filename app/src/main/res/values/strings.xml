@@ -28,9 +28,15 @@
     </string-array>
 
     <string-array name="homescreen_array_options_restaurant_type">
-        <item>Diner</item>
-        <item>Fast Food</item>
-        <item>Formal</item>
+        <item>American</item>
+        <item>African</item>
+        <item>French</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Middle-Eastern</item>
+        <item>South American</item>
+        <item>Vegetarian</item>
+        <item>Vegan</item>
     </string-array>
 
 

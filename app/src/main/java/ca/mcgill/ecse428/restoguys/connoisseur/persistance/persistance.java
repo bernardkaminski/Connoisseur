@@ -2,6 +2,7 @@ package ca.mcgill.ecse428.restoguys.connoisseur.persistance;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileReader;
@@ -66,8 +67,15 @@ public class Persistance {
 	 * @return True if saved data was loaded correctly. False if not.
 	 */
 	public static boolean loadState (Context contextFrom) {
-		ApplicationData.getInstance().setApplicationData((ApplicationData) loadStateProtected(contextFrom));
-		return !(ApplicationData.getInstance() == null);
+		ApplicationData loadedData = (ApplicationData) loadStateProtected(contextFrom);
+		if (!(loadedData == null)) {
+			ApplicationData.getInstance().setApplicationData(loadedData);
+			Toast.makeText(contextFrom, "User data loaded successfully.", Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**

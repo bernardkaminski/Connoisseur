@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
 import ca.mcgill.ecse428.restoguys.connoisseur.viewadapter.ListViewAdapterBusinesses;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelper;
 
@@ -39,6 +40,14 @@ public class History extends ActionBarActivity {
         // Populate required screen elements
         populateListView();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is removed from top-stack (ie. user stops using it)
+        // save all data to file.
+        Persistance.saveState(this);
     }
 
     /**

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
@@ -41,15 +42,17 @@ public class YelpSearch extends AsyncTask<Void,Void,ArrayList<Business>> {
 
     /** Instances Variables: Search Parameters */
     private int searchRadius;
+    private String restaurantType;
     private Location location;
 
     /** Constructor */
-    public YelpSearch(TextView tvFirstRestaurantName, TextView tvFirstRestaurantDistance, ImageButton ibFirstRestaurantImageButton, Location location, int searchRadius) {
+    public YelpSearch(TextView tvFirstRestaurantName, TextView tvFirstRestaurantDistance, ImageButton ibFirstRestaurantImageButton, Location location, int searchRadius, String restaurantType) {
         this.textViewFirstRestaurantName = tvFirstRestaurantName;
         this.textViewFirstRestaurantDistance = tvFirstRestaurantDistance;
         this.imageButtonFirstRestaurantImageButton = ibFirstRestaurantImageButton;
         this.location=location;
         this.searchRadius = searchRadius;
+        this.restaurantType = restaurantType;
     }
 
     @Override
@@ -69,6 +72,8 @@ public class YelpSearch extends AsyncTask<Void,Void,ArrayList<Business>> {
 
         // Search Parameters: User-Defined
         params.put("radius_filter", Integer.toString(searchRadius));    // Parameter sent is in METERS.
+        params.put("category_filter", restaurantType);                  // Parameter for restaurant type.
+        // TODO: add third search parameter.
 
         // Grab user coordinates
         CoordinateOptions userCoordinates = CoordinateOptions.builder()

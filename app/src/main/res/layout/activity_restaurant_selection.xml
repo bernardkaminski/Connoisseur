@@ -9,8 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#0099cc"
-    android:id="@+id/rootView">
+    android:id="@+id/rootView"
+    android:background="#252525">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,6 +42,9 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="@dimen/abc_text_size_headline_material"
+                    android:textColor="#ffffff"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="Restaurant Name"/>
 
                 <TextView
@@ -50,7 +53,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|end"
+                    android:maxLines="1"
+                    android:ellipsize="none"
                     android:textSize="@dimen/abc_text_size_button_material"
+                    android:textColor="#ffffff"
                     android:text="25 mile."/>
 
             </LinearLayout>
@@ -66,6 +72,7 @@
             android:orientation="horizontal">
 
             <Button
+                style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:id="@+id/activity_restaurant_selection_buttonReject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,10 +80,12 @@
                 android:onClick="onReject" />
 
             <Button
+                style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:id="@+id/activity_restaurant_selection_buttonAccept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes, Looks Good!" />
+                android:text="Yes, Looks Good!"
+                android:onClick="onAccept"/>
 
         </LinearLayout>
 
@@ -89,6 +98,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textSize="@dimen/abc_text_size_subhead_material"
+        android:textColor="#ffffff"
         android:text="@string/restaurant_selection_error_no_more_results" />
 
 </RelativeLayout>

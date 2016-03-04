@@ -26,6 +26,8 @@ import java.util.List;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.YelpSearch;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
@@ -45,6 +47,7 @@ public class RestaurantSelection extends ActionBarActivity implements
 	private Location mLastLocation;
 	private LocationRequest mLocationRequest;
 	private int radius;
+	private String restaurantType;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,8 @@ public class RestaurantSelection extends ActionBarActivity implements
 
 		// Load search results
 		Intent intent = getIntent();
-		radius = intent.getIntExtra("radius",10000);
+		radius = intent.getIntExtra("radius", 10000);
+		restaurantType = intent.getStringExtra("restauranttype");
 		mGoogleApiClient.connect();
 
 	}
@@ -113,8 +117,9 @@ public class RestaurantSelection extends ActionBarActivity implements
 
 	@Override
 	protected void onStop() {
-		mGoogleApiClient.disconnect();
 		super.onStop();
+		mGoogleApiClient.disconnect();
+		Persistance.saveState(this);
 	}
 	private void createGoogleAPIClient()
 	{
@@ -149,6 +154,32 @@ public class RestaurantSelection extends ActionBarActivity implements
 	public void onAccept(View view)
 	{
 
+		// Grab the list of items from the latest search (list starts with business currently displayed).
+		List<Business> currentSearchList = ApplicationData.getInstance().getListCurrentSearch();
+
+		// Add the current business to the history.
+		ApplicationData.getInstance().addBusinessToHistory(
+				currentSearchList.get(0),
+				true								// true since accepted
+		);
+
+		// Now remove the index 0 item from the current search list and set the new top item to currently viewable
+		// restaurant in restaurant selection
+		currentSearchList.remove(0);
+		if (currentSearchList.size() == 0) {
+			setViewToNoMoreResults("No more search results.");
+			return;
+		}
+		Business newTop = currentSearchList.get(0);
+		textViewRestaurantName.setText(newTop.name());
+		textViewRestaurantDistance.setText("" + (Math.round(newTop.distance())));
+		(new taskLoadImage(
+				imageButtonRestaurantImage,
+				newTop.imageUrl()
+		)).execute();
+
+		// TODO change to immediately show restaurant?
+
 	}
 
 	/**
@@ -156,13 +187,14 @@ public class RestaurantSelection extends ActionBarActivity implements
 	 */
 	public void onReject (View view) {
 
+		// Grab the list of items from the latest search (list starts with business currently displayed).
 		List<Business> currentSearchList = ApplicationData.getInstance().getListCurrentSearch();
-		List<Business> historyList = ApplicationData.getInstance().getListHistory();
 
-		// Move current item to history list (at index 0 to keep reverse chronological order).
-		historyList.add(0, currentSearchList.get(0));
-		// and save history in ApplicationData.
-		ApplicationData.getInstance().setListHistory(historyList);
+		// Add the current business to the history.
+		ApplicationData.getInstance().addBusinessToHistory(
+				currentSearchList.get(0),
+				false								// false since rejected
+		);
 
 		// Now remove the index 0 item from the current search list and set the new top item to currently viewable
 		// restaurant in restaurant selection
@@ -220,7 +252,7 @@ public class RestaurantSelection extends ActionBarActivity implements
 		{
 			YelpSearch yelpSearch = new YelpSearch(
 					textViewRestaurantName, textViewRestaurantDistance, imageButtonRestaurantImage,
-					mLastLocation,radius
+					mLastLocation,radius, restaurantType
 			);
 
 			yelpSearch.execute();

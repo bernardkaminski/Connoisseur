@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.yelpSearchParameters;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -32,6 +34,17 @@ public class HomeScreen extends ActionBarActivity {
 
 		populateSpinners();
 
+		// Load all save-data.
+		Persistance.loadState(this);
+
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		// When the activity is removed from top-stack (ie. user stops using it)
+		// save all data to file.
+		Persistance.saveState(this);
 	}
 
 	/**
@@ -102,11 +115,14 @@ public class HomeScreen extends ActionBarActivity {
 
 		// Grab User Search Parameter:
 
-		// Grab User Search Parameter:
+		// Grab User Search Parameter: Restaurant Type
+		String selectedRestaurantTypeString = spinnerOptionRestaurantType.getSelectedItem().toString();
+		String selectedRestaurantType = yelpSearchParameters.generateCategoryFilter(selectedRestaurantTypeString);
 
 		// Create new searchIntent and move to restaurant selection activity.
 		Intent searchIntent = new Intent(this, RestaurantSelection.class);
 		searchIntent.putExtra("radius",searchRadius);
+		searchIntent.putExtra("restauranttype", selectedRestaurantType);
 		startActivity(searchIntent);
 	}
 

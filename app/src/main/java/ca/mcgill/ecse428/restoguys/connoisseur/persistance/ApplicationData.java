@@ -11,7 +11,7 @@ import java.util.List;
 public class ApplicationData {
 
     /** Instance Variables */
-    private List<Business> listHistory;
+    private List<RestaurantWithDecision> listHistory;
     private List<Business> listCurrentSearch;
     private static ApplicationData applicationData = null;
 
@@ -19,7 +19,7 @@ public class ApplicationData {
 
     private ApplicationData()
     {
-        listHistory = new ArrayList<Business>();
+        listHistory = new ArrayList<RestaurantWithDecision>();
         listCurrentSearch = new ArrayList<Business>();
     }
 
@@ -30,15 +30,36 @@ public class ApplicationData {
         return applicationData;
     }
 
+    /**
+     * Adds a business to the business history.
+     * @param businessToAdd Business to be added.
+     */
+    public void addBusinessToHistory (Business businessToAdd, boolean decision) {
+
+        RestaurantWithDecision newRestaurantToAdd = new RestaurantWithDecision(
+                businessToAdd,
+                decision
+        );
+
+        // Put the given business at index 0 (latest business)
+        listHistory.add(0, newRestaurantToAdd);
+
+        // Ensure the list is at 10 items.
+        while (listHistory.size() > 10) {
+            listHistory.remove(10);
+        }
+
+    }
+
     public void setApplicationData (ApplicationData givenAD) {
         applicationData = givenAD;
     }
 
-    public List<Business> getListHistory() {
+    public List<RestaurantWithDecision> getListHistory() {
         return listHistory;
     }
 
-    public void setListHistory(List<Business> listHistory) {
+    public void setListHistory(List<RestaurantWithDecision> listHistory) {
         this.listHistory = listHistory;
     }
 
@@ -49,4 +70,5 @@ public class ApplicationData {
     public void setListCurrentSearch(List<Business> listCurrentSearch) {
         this.listCurrentSearch = listCurrentSearch;
     }
+
 }
