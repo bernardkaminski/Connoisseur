@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:textColor="#33b5e5"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"/>
 
     <ImageView
@@ -31,13 +31,14 @@
         android:layout_gravity="center"
         android:layout_weight="4"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:id="@+id/text_description"
         android:layout_gravity="center"
-        android:layout_weight="3"
-        android:text="This is a description of the restaurant." />
+        android:layout_weight="1"
+        android:text="This is a description of the restaurant."
+        />
 
     <RelativeLayout
         android:id="@+id/button_control"
@@ -58,7 +59,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:onClick="showOnMaps"/>
 
         <ImageButton
             android:id="@+id/accept"
