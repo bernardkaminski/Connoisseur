@@ -22,12 +22,11 @@
         android:textSize="30sp"
         android:textStyle="bold"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/restaurantImage"
-        android:src="@drawable/yelp_carlos"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_weight="4"/>
 

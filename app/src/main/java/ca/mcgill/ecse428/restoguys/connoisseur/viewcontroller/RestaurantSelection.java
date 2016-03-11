@@ -28,8 +28,8 @@ import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
-import ca.mcgill.ecse428.restoguys.connoisseur.YelpAPI.YelpSearch;
-import ca.mcgill.ecse428.restoguys.connoisseur.YelpAPI.taskLoadImage;
+import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.YelpSearch;
+import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
 public class RestaurantSelection extends ActionBarActivity implements
 		GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
@@ -156,6 +156,7 @@ public class RestaurantSelection extends ActionBarActivity implements
 		intent.putExtra("businessStreetAddress", currentSearchList.get(0).location().displayAddress().get(0)); // example street address: 235 Boulevard St-Jean
 		intent.putExtra("businessRegionalAddress", currentSearchList.get(0).location().displayAddress().get(2)); // example regional address: Pointe-Claire, QC H9R 3J1
 		intent.putExtra("restaurantDescription", currentSearchList.get(0).snippetText());
+		intent.putExtra("restaurantImage", currentSearchList.get(0).imageUrl());
 
 		// Transition to restaurant details screen
 		startActivity(intent);

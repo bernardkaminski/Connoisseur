@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
 public class RestaurantDetails extends ActionBarActivity {
 
@@ -21,6 +23,7 @@ public class RestaurantDetails extends ActionBarActivity {
 	/** Instance Variables: UI */
 	private TextView textViewRestaurantName;
 	private TextView description;
+	private ImageButton restaurantImageView;
 
 	private ImageButton googleMapsButton;
 
@@ -31,12 +34,17 @@ public class RestaurantDetails extends ActionBarActivity {
 
 		textViewRestaurantName = (TextView) findViewById(R.id.restaurantName);
 		description = (TextView) findViewById(R.id.text_description);
+		restaurantImageView = (ImageButton) findViewById(R.id.restaurantImage);
 
 		// Get restaurant information and load its name and description
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();
 		textViewRestaurantName.setText(extras.getString("restaurantName"));
 		description.setText(extras.getString("restaurantDescription"));
+		(new taskLoadImage(
+				restaurantImageView,
+				extras.getString("restaurantImage")
+		)).execute();
 	}
 
 	@Override

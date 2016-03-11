@@ -6,14 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.yelp.clientlib.entities.Business;
+
+import java.util.List;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
 import ca.mcgill.ecse428.restoguys.connoisseur.viewadapter.ListViewAdapterBusinesses;
-import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.Yelper;
 
 /**
  * Class that controls logic for history screen
@@ -36,6 +41,25 @@ public class History extends ActionBarActivity {
 
         // Set instance variables
         listview = (ListView) findViewById(R.id.listView2);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get current restaurant being displayed
+                Intent intent = new Intent(getApplicationContext(),RestaurantDetails.class);
+
+                RestaurantWithDecision restaurantWithDecision = (RestaurantWithDecision)parent.getItemAtPosition(position);
+                // Pass restaurant information to the restaurant details activity
+                intent.putExtra("restaurantName", restaurantWithDecision.getRestaurant().name());
+                intent.putExtra("businessStreetAddress", restaurantWithDecision.getRestaurant().location().displayAddress().get(0)); // example street address: 235 Boulevard St-Jean
+                intent.putExtra("businessRegionalAddress", restaurantWithDecision.getRestaurant().location().displayAddress().get(2)); // example regional address: Pointe-Claire, QC H9R 3J1
+                intent.putExtra("restaurantDescription", restaurantWithDecision.getRestaurant().snippetText());
+                intent.putExtra("restaurantImage", restaurantWithDecision.getRestaurant().imageUrl());
+
+                // Transition to restaurant details screen
+                startActivity(intent);
+            }
+        });
 
         // Populate required screen elements
         populateListView();
