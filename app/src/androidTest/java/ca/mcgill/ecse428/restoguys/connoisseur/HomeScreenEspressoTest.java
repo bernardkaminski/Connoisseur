@@ -30,7 +30,7 @@ public class HomeScreenEspressoTest {
     @Test
     public void checkViewsTest() {
         // Test Title to be displayed.
-        onView(withId(R.id.Title))
+        onView(withId(R.id.activity_homescreen_app_title))
                 .check(matches(isDisplayed()));
     }
 

@@ -38,13 +38,13 @@ public class RestaurantDetails extends ActionBarActivity {
 
 		// Get restaurant information and load its name and description
 		Intent intent = getIntent();
-		Bundle extras = intent.getExtras();
-		textViewRestaurantName.setText(extras.getString("restaurantName"));
-		description.setText(extras.getString("restaurantDescription"));
-		(new taskLoadImage(
-				restaurantImageView,
-				extras.getString("restaurantImage")
-		)).execute();
+			textViewRestaurantName.setText(intent.getStringExtra("restaurantName"));
+			description.setText(intent.getStringExtra("restaurantDescription"));
+			(new taskLoadImage(
+					restaurantImageView,
+					intent.getStringExtra("restaurantImage")
+			)).execute();
+
 	}
 
 	@Override

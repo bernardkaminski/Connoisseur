@@ -20,31 +20,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RestaurantDetailsEspressoTest {
-    private String mStringToBetyped;
 
     @Rule
     public ActivityTestRule<RestaurantDetails> mActivityRule = new ActivityTestRule<>(RestaurantDetails.class);
 
-    @Before
-    public void initValidString() {
-        // A dummy test string.
-        mStringToBetyped = "testText";
-    }
-
-    @Test
-    public void checkViewsTest() {
-        // Test The restaurant name to be displayed.
-        onView(withId(R.id.restaurantName))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void checkViewsTest2() {
-        //Test The restaurant description text change
-        onView(withId(R.id.text_description))
-                .perform(replaceText(mStringToBetyped))
-                .check(matches(withText(mStringToBetyped)));
-    }
 
     @Test
     public void checkViewsTest3() {
