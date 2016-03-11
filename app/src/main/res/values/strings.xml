@@ -9,14 +9,16 @@
     <string name="title_activity_history">History</string>
     <string name="title_activity_restaurant_selection">Restaurant Selection</string>
 
+    <string name="restaurant_selection_error_no_more_results">There are no more search results.</string>
 
     <!-- HomeScreen Strings -->
 
     <string-array name="homescreen_array_options_distance">
+        <item>1 km</item>
         <item>5 km</item>
         <item>10 km</item>
         <item>25 km</item>
-        <item>50 km</item>
+        <item>35 km</item>
     </string-array>
 
     <string-array name="homescreen_array_options_food_cost">
@@ -27,9 +29,15 @@
     </string-array>
 
     <string-array name="homescreen_array_options_restaurant_type">
-        <item>Diner</item>
-        <item>Fast Food</item>
-        <item>Formal</item>
+        <item>American</item>
+        <item>African</item>
+        <item>French</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Middle-Eastern</item>
+        <item>South American</item>
+        <item>Vegetarian</item>
+        <item>Vegan</item>
     </string-array>
 
 

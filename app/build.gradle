@@ -14,6 +14,9 @@ android {
     }
     productFlavors {
     }
+    defaultConfig {
+        multiDexEnabled true
+    }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/DEPENDENCIES'
@@ -32,7 +35,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.yelp.clientlib:yelp-android:1.0.0'
     androidTestCompile 'com.android.support.test:rules:0.3'
-    compile 'com.android.support:support-annotations:22.2.0'
+    compile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.1') {
+        // Necessary if your app targets Marshmallow (since Espresso
+        // hasn't moved to Marshmallow yet)
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2') {
         // Necessary if your app targets Marshmallow (since Espresso
         // hasn't moved to Marshmallow yet)
@@ -44,4 +52,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     compile 'junit:junit:4.12'
+    compile files('libs/xstream-1.4.7.jar')
+    compile 'com.google.android.gms:play-services:7.3.0'
 }

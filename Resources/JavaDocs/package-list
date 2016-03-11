@@ -1,1 +1,5 @@
 ca.mcgill.ecse428.restoguys.connoisseur
+ca.mcgill.ecse428.restoguys.connoisseur.persistance
+ca.mcgill.ecse428.restoguys.connoisseur.viewadapter
+ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller
+ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI

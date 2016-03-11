@@ -1,59 +1,39 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#252525"
+    android:orientation="vertical"
+    tools:context=".HomeScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
-    android:orientation="vertical"
-    tools:context=".HomeScreen">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+    android:gravity="center">
 
         <TextView
-            android:id="@+id/Title"
+            android:id="@+id/activity_homescreen_app_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="@dimen/abc_text_size_headline_material"
+            android:textSize="@dimen/abc_text_size_display_2_material"
+            android:textColor="#ffffff"
+            android:maxLines="1"
+            android:ellipsize="none"
             android:text="CONNOISSEUR" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
 
         <LinearLayout
             android:id="@+id/activity_homescreen_layout_spinners"
+            android:layout_below="@+id/activity_homescreen_app_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#3a3a3a">
 
             <Spinner
                 android:id="@+id/activity_homescreen_spinner_Distance"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:spinnerMode="dropdown" />
-
-            <Spinner
-                android:id="@+id/activity_homescreen_spinner_Cost"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,6 +70,6 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+</RelativeLayout>
 
-</LinearLayout>
+
