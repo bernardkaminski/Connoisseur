@@ -19,6 +19,9 @@ import java.util.Map;
 //import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import retrofit.Call;
 
+/**
+ * Class that populates listview with yelp results
+ */
 public class Yelper extends AsyncTask<Void,Void,ArrayList<Business>> {
 
 	/**
@@ -36,7 +39,7 @@ public class Yelper extends AsyncTask<Void,Void,ArrayList<Business>> {
 	private Context context;
 
 	/**
-	 * Constructor, bitch.
+	 * Constructor.
 	 * @param givenListView ListView to populate.
 	 * @param context Method call context.
 	 */

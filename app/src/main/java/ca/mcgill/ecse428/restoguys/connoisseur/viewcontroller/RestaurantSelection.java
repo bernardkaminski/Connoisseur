@@ -1,5 +1,7 @@
 package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -31,6 +33,9 @@ import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecisio
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.YelpSearch;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
+/**
+ * The controller that is in charge of the Restaurant selection screen
+ */
 public class RestaurantSelection extends ActionBarActivity implements
 		GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -81,6 +86,11 @@ public class RestaurantSelection extends ActionBarActivity implements
 
 	}
 
+	/**
+	 * creates the options menu
+	 * @param menu
+	 * @return true or false on weather action was successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -258,6 +268,21 @@ public class RestaurantSelection extends ActionBarActivity implements
 		if (mLastLocation == null) {
 
 			LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
+			new AlertDialog.Builder(this)
+					.setTitle("No geolocation")
+					.setMessage("please turn on geolocation")
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							// continue with delete
+						}
+					})
+					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							// do nothing
+						}
+					})
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.show();
 		}
 		if(mLastLocation != null)
 		{
@@ -296,10 +321,12 @@ public class RestaurantSelection extends ActionBarActivity implements
                  * PendingIntent
                  */
 			} catch (IntentSender.SendIntentException e) {
+
 				// Log the error
 				e.printStackTrace();
 			}
 		} else {
+
             /*
              * If no resolution is available, display a dialog to the
              * user with the error.

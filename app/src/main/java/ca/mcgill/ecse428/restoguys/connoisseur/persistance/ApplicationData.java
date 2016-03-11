@@ -51,22 +51,43 @@ public class ApplicationData {
 
     }
 
+    /**
+     * Sets the data for the application
+     * @param givenAD The given data
+     */
     public void setApplicationData (ApplicationData givenAD) {
         applicationData = givenAD;
     }
 
+    /**
+     * Gets the History list
+     * @return A List of RestaurantWithDecision objects that represent restaurants in history
+     */
     public List<RestaurantWithDecision> getListHistory() {
         return listHistory;
     }
 
+
+    /**
+     * Sets the History list
+     * @param listHistory List of Restaurants that weill be used as new history list
+     */
     public void setListHistory(List<RestaurantWithDecision> listHistory) {
         this.listHistory = listHistory;
     }
 
+    /**
+     * Gets the current list of restaurants that was returned from search
+     * @return list of bisinesses
+     */
     public List<Business> getListCurrentSearch() {
         return listCurrentSearch;
     }
 
+    /**
+     * sets the list if restaurants returned from search
+     * @param listCurrentSearch List of businesses
+     */
     public void setListCurrentSearch(List<Business> listCurrentSearch) {
         this.listCurrentSearch = listCurrentSearch;
     }

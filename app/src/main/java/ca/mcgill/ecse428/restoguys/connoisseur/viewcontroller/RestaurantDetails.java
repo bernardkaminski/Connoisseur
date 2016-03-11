@@ -17,6 +17,9 @@ import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
+/**
+ * Class that is the controller for the restaurant selestion screen
+ */
 public class RestaurantDetails extends ActionBarActivity {
 
 
@@ -55,6 +58,10 @@ public class RestaurantDetails extends ActionBarActivity {
 		Persistance.saveState(this);
 	}
 
+	/**
+	 * Shows the location of restaurant on map to the user
+	 * @param view the view that initiate the event
+	 */
 	public void showOnMaps(View view) {
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();

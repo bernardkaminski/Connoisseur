@@ -35,12 +35,12 @@ public class HomeScreenEspressoTest {
     }
 
 
-    @Test
-    public void checkViewsTest2() {
-        // Check Options to be displayed.
-        onView(withId(R.id.activity_homescreen_spinner_Cost))
-                .check(matches(isDisplayed()));
-    }
+//    @Test
+//    public void checkViewsTest2() {
+//        // Check Options to be displayed.
+//        onView(withId(R.id.activity_homescreen_spinner_Cost))
+//                .check(matches(isDisplayed()));
+//    }
 
     @Test
     public void checkViewsTest3() {
