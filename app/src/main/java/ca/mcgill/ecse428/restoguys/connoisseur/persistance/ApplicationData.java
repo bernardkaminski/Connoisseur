@@ -108,6 +108,21 @@ public class ApplicationData {
     }
 
     /**
+     * Resets restaurant history to empty.
+     * @return True if at least one element was cleared. False if else.
+     */
+    public boolean resetListHistory () {
+
+        boolean isEmpty = (this.listHistory.size() == 0);
+        this.listHistory = new ArrayList<RestaurantWithDecision>();
+
+        // If the list was empty, then return false.
+        return !(isEmpty);
+
+
+    }
+
+    /**
      * Gets the current list of restaurants that was returned from search
      * @return list of bisinesses
      */

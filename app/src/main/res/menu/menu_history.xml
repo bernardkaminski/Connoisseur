@@ -5,8 +5,14 @@
 
     <item
         android:title="APPROVED"
-        android:id="@+id/menu_restaurant_selection_approved"
+        android:id="@+id/menu_history_see_approved"
         app:showAsAction="ifRoom"
         android:onClick="goToApprovedRestaurants" />
+
+    <item
+        android:title="CLEAR HISTORY"
+        android:id="@+id/menu_history_clear"
+        app:showAsAction="never"
+        android:onClick="clearHistory" />
 
 </menu>
