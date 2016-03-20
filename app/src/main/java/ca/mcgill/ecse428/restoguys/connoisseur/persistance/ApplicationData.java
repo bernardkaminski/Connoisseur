@@ -12,6 +12,7 @@ public class ApplicationData {
 
     /** Instance Variables */
     private List<RestaurantWithDecision> listHistory;
+    private List<RestaurantWithDecision> listApproved;
     private List<Business> listCurrentSearch;
     private static ApplicationData applicationData = null;
 
@@ -20,6 +21,7 @@ public class ApplicationData {
     private ApplicationData()
     {
         listHistory = new ArrayList<RestaurantWithDecision>();
+        listApproved = new ArrayList<RestaurantWithDecision>();
         listCurrentSearch = new ArrayList<Business>();
     }
 
@@ -36,10 +38,13 @@ public class ApplicationData {
      */
     public void addBusinessToHistory (Business businessToAdd, boolean decision) {
 
+        // Create a new business with decision object for the prospective business.
         RestaurantWithDecision newRestaurantToAdd = new RestaurantWithDecision(
                 businessToAdd,
                 decision
         );
+
+        // Add it to history
 
         // Put the given business at index 0 (latest business)
         listHistory.add(0, newRestaurantToAdd);
@@ -47,6 +52,25 @@ public class ApplicationData {
         // Ensure the list is at 10 items.
         while (listHistory.size() > 10) {
             listHistory.remove(10);
+        }
+
+        // Add it to approved list, if it was approved.
+        if (decision) {
+
+            // If it's already in the list, don't add it.
+            boolean isFoundInApproved = false;
+            if (!(listApproved == null) && !(listApproved.size() == 0)) {
+                for (RestaurantWithDecision currentRestaurant : listApproved) {
+                    if (currentRestaurant.getRestaurant().name().equals(businessToAdd.name())) {
+                        isFoundInApproved = true;
+                    }
+                }
+            }
+
+            if (!isFoundInApproved) {
+                listApproved.add(0, newRestaurantToAdd);
+            }
+
         }
 
     }
@@ -67,6 +91,13 @@ public class ApplicationData {
         return listHistory;
     }
 
+    /**
+     * Gets the approved restaurants list.
+     * @return A List of RestaurantWithDecision objects
+     */
+    public List<RestaurantWithDecision> getListApproved() {
+        return listApproved;
+    }
 
     /**
      * Sets the History list
