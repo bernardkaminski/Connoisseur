@@ -8,12 +8,14 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_restaurant_selection">Restaurant Selection</string>
+    <string name="title_activity_approved_restaurants">Approved Restaurants</string>
 
     <string name="restaurant_selection_error_no_more_results">There are no more search results.</string>
 
     <!-- HomeScreen Strings -->
 
     <string-array name="homescreen_array_options_distance">
+        <item>1 km</item>
         <item>5 km</item>
         <item>10 km</item>
         <item>25 km</item>
@@ -38,6 +40,8 @@
         <item>Vegetarian</item>
         <item>Vegan</item>
     </string-array>
+
+
 
 
 </resources>

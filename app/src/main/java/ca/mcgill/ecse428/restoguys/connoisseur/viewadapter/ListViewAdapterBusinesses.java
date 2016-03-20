@@ -22,8 +22,13 @@ public class ListViewAdapterBusinesses extends ArrayAdapter<RestaurantWithDecisi
 
     private final Context context;
 
-    // Default Constructor.
-    // Takes context, array of Contacts, and sets the layoutContext to 0 (DEFAULT).
+    /**
+     *Default Constructor
+     * Takes context, array of Contacts, and sets the layoutContext to 0 (DEFAULT).
+     * @param context the context passed to it
+     * @param listBusinesses The list of bissinesses that will be displayed
+     */
+
     public ListViewAdapterBusinesses (Context context, List<RestaurantWithDecision> listBusinesses) {
         super(context, R.layout.listview_business_item, listBusinesses);
         this.context = context;

@@ -22,7 +22,7 @@ import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.yelpSearchParameters;
 public class HomeScreen extends ActionBarActivity {
 
 	private Spinner spinnerOptionDistance;
-	private Spinner spinnerOptionCost;
+	//private Spinner spinnerOptionCost;
 	private Spinner spinnerOptionRestaurantType;
 
 
@@ -55,7 +55,7 @@ public class HomeScreen extends ActionBarActivity {
 		// Grab all the views
 
 		spinnerOptionDistance       = (Spinner) findViewById(R.id.activity_homescreen_spinner_Distance);
-		spinnerOptionCost           = (Spinner) findViewById(R.id.activity_homescreen_spinner_Cost);
+		//spinnerOptionCost           = (Spinner) findViewById(R.id.activity_homescreen_spinner_Cost);
 		spinnerOptionRestaurantType = (Spinner) findViewById(R.id.activity_homescreen_spinner_RestaurantType);
 
 		// Use default spinner adapters to populate each spinner with array from strings.xml
@@ -67,12 +67,12 @@ public class HomeScreen extends ActionBarActivity {
 		adapterSpinnerDistance.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOptionDistance.setAdapter(adapterSpinnerDistance);
 
-		ArrayAdapter<CharSequence> adapterSpinnerCost = ArrayAdapter.createFromResource(
-				this,
-				R.array.homescreen_array_options_food_cost, android.R.layout.simple_spinner_item
-		);
-		adapterSpinnerCost.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerOptionCost.setAdapter(adapterSpinnerCost);
+//		ArrayAdapter<CharSequence> adapterSpinnerCost = ArrayAdapter.createFromResource(
+//				this,
+//				R.array.homescreen_array_options_food_cost, android.R.layout.simple_spinner_item
+//		);
+//		adapterSpinnerCost.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//spinnerOptionCost.setAdapter(adapterSpinnerCost);
 
 		ArrayAdapter<CharSequence> adapterSpinnerRestaurantType = ArrayAdapter.createFromResource(
 				this,

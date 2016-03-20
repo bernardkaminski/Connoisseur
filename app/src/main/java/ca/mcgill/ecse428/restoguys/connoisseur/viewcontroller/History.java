@@ -5,10 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yelp.clientlib.entities.Business;
 
@@ -66,6 +70,18 @@ public class History extends ActionBarActivity {
 
     }
 
+    /**
+     * creates the options menu
+     * @param menu
+     * @return true or false on weather action was successful
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_history, menu);
+        return true;
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -84,6 +100,31 @@ public class History extends ActionBarActivity {
                 ApplicationData.getInstance().getListHistory()
         ));
 
+    }
+
+    /**
+     * Launches approved-restaurants view.
+     * @param item the menu item that called it
+     */
+    public void goToApprovedRestaurants(MenuItem item) {
+        Intent intent = new Intent(this, ApprovedRestaurants.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Clears user history. Refreshes history listview.
+     * @param item the menu item that called it
+     */
+    public void clearHistory (MenuItem item) {
+
+        // Reset the history and check return to see if list had zero elements.
+        if (!ApplicationData.getInstance().resetListHistory()) {
+            // If it returns false, then that means there was nothing to clear. Notify user.
+            Toast.makeText(this, "You cannot clear an empty history.", Toast.LENGTH_SHORT).show();
+        }
+
+        // Reset listview to reflect new history list.
+        populateListView();
     }
 
     /**

@@ -1,5 +1,7 @@
 package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -21,16 +23,17 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.yelp.clientlib.entities.Business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
-import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.YelpSearch;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
+/**
+ * The controller that is in charge of the Restaurant selection screen
+ */
 public class RestaurantSelection extends ActionBarActivity implements
 		GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -81,12 +84,18 @@ public class RestaurantSelection extends ActionBarActivity implements
 
 	}
 
+	/**
+	 * creates the options menu
+	 * @param menu
+	 * @return true or false on weather action was successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_restaurant_selection, menu);
 		return true;
 	}
+
 //	@Override
 //	protected void onStart() {
 //		super.onStart();
@@ -139,6 +148,15 @@ public class RestaurantSelection extends ActionBarActivity implements
 	 */
 	public void goToHistory(MenuItem item) {
 		Intent intent = new Intent(this, History.class);
+		startActivity(intent);
+	}
+
+	/**
+	 * Launches approved-restaurants view.
+	 * @param item the menu item that called it
+	 */
+	public void goToApprovedRestaurants(MenuItem item) {
+		Intent intent = new Intent(this, ApprovedRestaurants.class);
 		startActivity(intent);
 	}
 
@@ -258,6 +276,21 @@ public class RestaurantSelection extends ActionBarActivity implements
 		if (mLastLocation == null) {
 
 			LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
+			new AlertDialog.Builder(this)
+					.setTitle("No geolocation")
+					.setMessage("please turn on geolocation")
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							// continue with delete
+						}
+					})
+					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							// do nothing
+						}
+					})
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.show();
 		}
 		if(mLastLocation != null)
 		{
@@ -296,10 +329,12 @@ public class RestaurantSelection extends ActionBarActivity implements
                  * PendingIntent
                  */
 			} catch (IntentSender.SendIntentException e) {
+
 				// Log the error
 				e.printStackTrace();
 			}
 		} else {
+
             /*
              * If no resolution is available, display a dialog to the
              * user with the error.
@@ -307,4 +342,6 @@ public class RestaurantSelection extends ActionBarActivity implements
 			Log.i("LOCATION", "Location services connection failed with code " + connectionResult.getErrorCode());
 		}
 	}
+
+
 }

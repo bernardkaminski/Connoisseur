@@ -9,4 +9,10 @@
         app:showAsAction="ifRoom"
         android:onClick="goToHistory"/>
 
+    <item
+        android:title="APPROVED"
+        android:id="@+id/menu_restaurant_selection_approved"
+        app:showAsAction="ifRoom"
+        android:onClick="goToApprovedRestaurants" />
+
 </menu>

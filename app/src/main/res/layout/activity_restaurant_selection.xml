@@ -56,8 +56,7 @@
                     android:maxLines="1"
                     android:ellipsize="none"
                     android:textSize="@dimen/abc_text_size_button_material"
-                    android:textColor="#ffffff"
-                    android:text="25 mile."/>
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
 
