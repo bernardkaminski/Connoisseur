@@ -35,14 +35,7 @@ public class RestaurantDetailsEspressoTest {
     @Test
     public void checkViewsTest4() {
         //Test The button to be displayed
-        onView(withId(R.id.accept))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void checkViewsTest5() {
-        //Test button to be displayed
-        onView(withId(R.id.reject))
+        onView(withId(R.id.restaurantName))
                 .check(matches(isDisplayed()));
     }
 
