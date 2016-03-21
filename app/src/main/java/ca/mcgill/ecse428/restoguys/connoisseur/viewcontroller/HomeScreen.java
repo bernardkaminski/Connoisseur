@@ -1,7 +1,12 @@
 package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -34,9 +39,9 @@ public class HomeScreen extends ActionBarActivity {
 
 		populateSpinners();
 
+		checkGeoTurnedOn();
 		// Load all save-data.
 		Persistance.loadState(this);
-
 	}
 
 	@Override
@@ -126,6 +131,45 @@ public class HomeScreen extends ActionBarActivity {
 		startActivity(searchIntent);
 	}
 
+	public void checkGeoTurnedOn() {
+		LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+		boolean geoTurnedOn = false;
+		boolean networkTurnedOn = false;
+
+		try {
+			geoTurnedOn = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch(Exception ex) {Log.d("Test","GPS not turned on");}
+
+		try {
+			networkTurnedOn = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+		} catch(Exception ex) {Log.d("Test","Data not turned on");}
+
+		if(!geoTurnedOn && !networkTurnedOn) {
+			// notify user
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setMessage("Seems like your geolocation is turned off. Would you like to turn it on?");
+			//dialog.setMessage(this.getResources().getString(R.string.gps_network_not_enabled));
+			dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+					// TODO Auto-generated method stub
+					Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					HomeScreen.this.startActivity(myIntent);
+					//get gps
+				}
+			});
+			dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+					// TODO Auto-generated method stub
+
+				}
+			});
+			dialog.show();
+		}
+
+	}
 
 
 }
