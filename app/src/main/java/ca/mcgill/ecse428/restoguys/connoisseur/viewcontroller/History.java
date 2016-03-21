@@ -127,31 +127,4 @@ public class History extends ActionBarActivity {
         populateListView();
     }
 
-    /**
-     * function called when an item is clicked in the list
-     * @param view
-     * The list item clicked
-     *
-     */
-    public void openRestoinfo(View view) {
-        TextView t = (TextView) view;
-        CharSequence resto = t.getText();
-        new AlertDialog.Builder(this)
-                .setTitle("Resto Info")
-                .setMessage(resto)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with something
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-
-    }
-
 }

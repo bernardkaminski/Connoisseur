@@ -7,13 +7,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
 import ca.mcgill.ecse428.restoguys.connoisseur.viewadapter.ListViewAdapterBusinesses;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewadapter.ListViewAdapterBusinessesWithDelete;
 
 public class ApprovedRestaurants extends ActionBarActivity {
 
@@ -26,10 +29,6 @@ public class ApprovedRestaurants extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approved_restaurants);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        android:parentActivityName=".viewcontroller.RestaurantSelection">
-//        <meta-data
-//        android:name="android.support.PARENT_ACTIVITY"
-//        android:value="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection"/>
 
         // Grab reference to screen elements
         listview = (ListView) findViewById(R.id.activity_approved_restaurants_listview_restaurants);
@@ -37,6 +36,27 @@ public class ApprovedRestaurants extends ActionBarActivity {
 
         // Populate listview.
         populateListView();
+
+        // Set onItemClickListener for listview
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // Get current restaurant being displayed
+                Intent intent = new Intent(getApplicationContext(),RestaurantDetails.class);
+
+                RestaurantWithDecision restaurantWithDecision = (RestaurantWithDecision) parent.getItemAtPosition(position);
+                // Pass restaurant information to the restaurant details activity
+                intent.putExtra("restaurantName", restaurantWithDecision.getRestaurant().name());
+                intent.putExtra("businessStreetAddress", restaurantWithDecision.getRestaurant().location().displayAddress().get(0)); // example street address: 235 Boulevard St-Jean
+                intent.putExtra("businessRegionalAddress", restaurantWithDecision.getRestaurant().location().displayAddress().get(2)); // example regional address: Pointe-Claire, QC H9R 3J1
+                intent.putExtra("restaurantDescription", restaurantWithDecision.getRestaurant().snippetText());
+                intent.putExtra("restaurantImage", restaurantWithDecision.getRestaurant().imageUrl());
+
+                // Transition to restaurant details screen
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -72,7 +92,7 @@ public class ApprovedRestaurants extends ActionBarActivity {
         }
         else {
             errorText.setVisibility(View.INVISIBLE);
-            listview.setAdapter(new ListViewAdapterBusinesses(
+            listview.setAdapter(new ListViewAdapterBusinessesWithDelete(
                     this,
                     ApplicationData.getInstance().getListApproved()
             ));
