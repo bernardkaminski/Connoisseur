@@ -15,9 +15,8 @@ public class ApplicationData {
     private List<RestaurantWithDecision> listApproved;
     private List<Business> listCurrentSearch;
     private static ApplicationData applicationData = null;
-
+    private boolean instructionsViewed;
     /** Constructor */
-
     private ApplicationData()
     {
         listHistory = new ArrayList<RestaurantWithDecision>();
@@ -138,4 +137,11 @@ public class ApplicationData {
         this.listCurrentSearch = listCurrentSearch;
     }
 
+    public void setViewedInstructionsToTrue(){
+        instructionsViewed = true;
+    }
+
+    public boolean getViewedInstructions() {
+        return instructionsViewed;
+    }
 }

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.yelpSearchParameters;
 
 /**
@@ -42,6 +43,9 @@ public class HomeScreen extends ActionBarActivity {
 		checkGeoTurnedOn();
 		// Load all save-data.
 		Persistance.loadState(this);
+		//check to see if user clicked ok when instructions were first displayed
+		if(!ApplicationData.getInstance().getViewedInstructions())
+			showNewUserInstructions();
 	}
 
 	@Override
@@ -131,7 +135,7 @@ public class HomeScreen extends ActionBarActivity {
 		startActivity(searchIntent);
 	}
 
-	public void checkGeoTurnedOn() {
+	private void checkGeoTurnedOn() {
 		LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 		boolean geoTurnedOn = false;
 		boolean networkTurnedOn = false;
@@ -171,5 +175,18 @@ public class HomeScreen extends ActionBarActivity {
 
 	}
 
+	private void showNewUserInstructions() {
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setTitle("User Instructions");
+		dialog.setMessage("Select your preferred radius and type of cuisine then hit 'Search'.\n\nHit 'Yes, Looks Good!' for restaurants that pique your interest and 'No Thanks, Next!' for those that don't. You can keep doing this until no more restaurants are displayed.\n\nYou can always go back to your 'History' to see your recently viewed restaurants or your 'Approved' list to see restaurants you've liked.\n");
+		dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+				// TODO Auto-generated method stub
+				ApplicationData.getInstance().setViewedInstructionsToTrue();
+			}
+		});
 
+		dialog.show();
+		}
 }
