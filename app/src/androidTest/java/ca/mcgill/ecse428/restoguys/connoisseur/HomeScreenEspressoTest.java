@@ -1,23 +1,21 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
-import ca.mcgill.ecse428.restoguys.connoisseur.R;
-import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.LargeTest;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
-import android.test.suitebuilder.annotation.LargeTest;
-import static android.support.test.espresso.Espresso.*;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.replaceText;
+import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen;
+
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
+import static org.hamcrest.Matchers.containsString;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -44,6 +42,28 @@ public class HomeScreenEspressoTest {
     public void checkViewsTest4() {
         onView(withId(R.id.activity_homescreen_spinner_RestaurantType))
                 .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkViewsTest5() {
+        onView(withId(R.id.activity_homescreen_searchButton))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkViewsTest6() {
+        onView(withId(R.id.activity_homescreen_helpButton))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkViewsTest7() {
+        onView(withId(R.id.activity_homescreen_spinner_Distance)).check(matches(withSpinnerText(containsString("1 km"))));
+    }
+
+    @Test
+    public void checkViewsTest8() {
+        onView(withId(R.id.activity_homescreen_spinner_RestaurantType)).check(matches(withSpinnerText(containsString("American"))));
     }
 
 }
