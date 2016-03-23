@@ -80,7 +80,7 @@ public class ApplicationData {
      * Sets the data for the application
      * @param givenAD The given data
      */
-    public void setApplicationData (ApplicationData givenAD) {
+    public static void setApplicationData (ApplicationData givenAD) {
         applicationData = givenAD;
     }
 
