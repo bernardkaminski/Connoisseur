@@ -67,6 +67,8 @@ public class ApplicationData {
             }
 
             if (!isFoundInApproved) {
+                if(listApproved==null)
+                    listApproved = new ArrayList<RestaurantWithDecision>();
                 listApproved.add(0, newRestaurantToAdd);
             }
 
