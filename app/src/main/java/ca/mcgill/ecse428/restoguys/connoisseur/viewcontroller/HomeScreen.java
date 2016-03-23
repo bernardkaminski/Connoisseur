@@ -194,4 +194,8 @@ public class HomeScreen extends ActionBarActivity {
 
 		dialog.show();
 		}
+		
+	public void resetData(View view){
+		Persistance.clearState(this);
+	}
 }
