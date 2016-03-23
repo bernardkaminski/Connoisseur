@@ -1,7 +1,12 @@
 package ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +18,7 @@ import java.util.regex.Pattern;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
+import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.yelpSearchParameters;
 
 /**
@@ -34,9 +40,12 @@ public class HomeScreen extends ActionBarActivity {
 
 		populateSpinners();
 
+		checkGeoTurnedOn();
 		// Load all save-data.
 		Persistance.loadState(this);
-
+		//check to see if user clicked ok when instructions were first displayed
+		if(!ApplicationData.getInstance().getViewedInstructions())
+			showNewUserInstructions();
 	}
 
 	@Override
@@ -126,6 +135,67 @@ public class HomeScreen extends ActionBarActivity {
 		startActivity(searchIntent);
 	}
 
+	private void checkGeoTurnedOn() {
+		LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+		boolean geoTurnedOn = false;
+		boolean networkTurnedOn = false;
 
+		try {
+			geoTurnedOn = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch(Exception ex) {Log.d("Test","GPS not turned on");}
 
+		try {
+			networkTurnedOn = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+		} catch(Exception ex) {Log.d("Test","Data not turned on");}
+
+		if(!geoTurnedOn && !networkTurnedOn) {
+			// notify user
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setMessage("Seems like your geolocation is turned off. Would you like to turn it on?");
+			//dialog.setMessage(this.getResources().getString(R.string.gps_network_not_enabled));
+			dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+					// TODO Auto-generated method stub
+					Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					HomeScreen.this.startActivity(myIntent);
+					//get gps
+				}
+			});
+			dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+					// TODO Auto-generated method stub
+
+				}
+			});
+			dialog.show();
+		}
+
+	}
+
+	//on help click, help popup activates
+	public void onHelp (View view) {
+		showNewUserInstructions();
+	}
+
+	private void showNewUserInstructions() {
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setTitle("User Instructions");
+		dialog.setMessage("Select your preferred radius and type of cuisine then hit 'Search'.\n\nHit 'Yes, Looks Good!' for restaurants that pique your interest and 'No Thanks, Next!' for those that don't. You can keep doing this until no more restaurants are displayed.\n\nYou can always go back to your 'History' to see your recently viewed restaurants or your 'Approved' list to see restaurants you've liked.\n");
+		dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+				// TODO Auto-generated method stub
+				ApplicationData.getInstance().setViewedInstructionsToTrue();
+			}
+		});
+
+		dialog.show();
+		}
+		
+	public void resetData(View view){
+		Persistance.clearState(this);
+	}
 }

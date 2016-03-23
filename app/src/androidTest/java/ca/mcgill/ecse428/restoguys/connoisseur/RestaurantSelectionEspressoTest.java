@@ -1,27 +1,21 @@
 package ca.mcgill.ecse428.restoguys.connoisseur;
 
-import ca.mcgill.ecse428.restoguys.connoisseur.R;
-import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantDetails;
-import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.LargeTest;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
+import ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection;
 
-import android.test.suitebuilder.annotation.LargeTest;
-import android.view.View;
-
-import static android.support.test.espresso.Espresso.*;
-import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -31,6 +25,33 @@ public class RestaurantSelectionEspressoTest {
     @Rule
     public ActivityTestRule<RestaurantSelection> mActivityRule = new ActivityTestRule<>(RestaurantSelection.class);
 
+    @Before
+    public void likeRandomRestaurant() {
+        onView(withId(R.id.activity_restaurant_selection_buttonAccept))
+                .perform(click())
+                .check(matches(isDisplayed()));
+    }
+
+    @Before
+    public void dislikeRandomRestaurant() {
+        // Test The restaurant name to be displayed.
+        onView(withId(R.id.activity_restaurant_selection_buttonReject))
+                .perform(click())
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void likeRandomRestaurantTest() {
+        onView(withId(R.id.activity_restaurant_selection_buttonAccept))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void dislikeRandomRestaurantTest() {
+        // Test The restaurant name to be displayed.
+        onView(withId(R.id.activity_restaurant_selection_buttonReject))
+                .check(matches(isDisplayed()));
+    }
 
     @Test
     public void checkViewsTest() {
@@ -38,7 +59,6 @@ public class RestaurantSelectionEspressoTest {
         onView(withId(R.id.activity_restaurant_selection_current_restaurant_name))
                 .check(matches(isDisplayed()));
     }
-
 
     @Test
     public void checkViewsTest2() {

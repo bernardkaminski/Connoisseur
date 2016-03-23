@@ -110,6 +110,23 @@ public class Persistance {
 		}
 
 	}
+	
+	private static void clearStateProtected(Context contextFrom) {
+
+		try {
+			for (File file : contextFrom.getFilesDir().listFiles()) file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void clearState (Context contextFrom) {
+		clearStateProtected(contextFrom);
+		ApplicationData.setApplicationData(null);
+		saveState(contextFrom);
+		loadState(contextFrom);
+	}
 
 
 }

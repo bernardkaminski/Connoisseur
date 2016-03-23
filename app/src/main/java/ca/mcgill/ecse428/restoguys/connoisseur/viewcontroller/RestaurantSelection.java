@@ -23,13 +23,11 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.yelp.clientlib.entities.Business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse428.restoguys.connoisseur.R;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.ApplicationData;
 import ca.mcgill.ecse428.restoguys.connoisseur.persistance.Persistance;
-import ca.mcgill.ecse428.restoguys.connoisseur.persistance.RestaurantWithDecision;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.YelpSearch;
 import ca.mcgill.ecse428.restoguys.connoisseur.yelpAPI.taskLoadImage;
 
@@ -97,6 +95,7 @@ public class RestaurantSelection extends ActionBarActivity implements
 		inflater.inflate(R.menu.menu_restaurant_selection, menu);
 		return true;
 	}
+
 //	@Override
 //	protected void onStart() {
 //		super.onStart();
@@ -149,6 +148,15 @@ public class RestaurantSelection extends ActionBarActivity implements
 	 */
 	public void goToHistory(MenuItem item) {
 		Intent intent = new Intent(this, History.class);
+		startActivity(intent);
+	}
+
+	/**
+	 * Launches approved-restaurants view.
+	 * @param item the menu item that called it
+	 */
+	public void goToApprovedRestaurants(MenuItem item) {
+		Intent intent = new Intent(this, ApprovedRestaurants.class);
 		startActivity(intent);
 	}
 
@@ -334,4 +342,6 @@ public class RestaurantSelection extends ActionBarActivity implements
 			Log.i("LOCATION", "Location services connection failed with code " + connectionResult.getErrorCode());
 		}
 	}
+
+
 }

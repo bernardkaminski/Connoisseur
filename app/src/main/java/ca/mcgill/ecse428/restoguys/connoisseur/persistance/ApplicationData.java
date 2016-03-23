@@ -12,14 +12,15 @@ public class ApplicationData {
 
     /** Instance Variables */
     private List<RestaurantWithDecision> listHistory;
+    private List<RestaurantWithDecision> listApproved;
     private List<Business> listCurrentSearch;
     private static ApplicationData applicationData = null;
-
+    private boolean instructionsViewed;
     /** Constructor */
-
     private ApplicationData()
     {
         listHistory = new ArrayList<RestaurantWithDecision>();
+        listApproved = new ArrayList<RestaurantWithDecision>();
         listCurrentSearch = new ArrayList<Business>();
     }
 
@@ -36,10 +37,13 @@ public class ApplicationData {
      */
     public void addBusinessToHistory (Business businessToAdd, boolean decision) {
 
+        // Create a new business with decision object for the prospective business.
         RestaurantWithDecision newRestaurantToAdd = new RestaurantWithDecision(
                 businessToAdd,
                 decision
         );
+
+        // Add it to history
 
         // Put the given business at index 0 (latest business)
         listHistory.add(0, newRestaurantToAdd);
@@ -49,13 +53,34 @@ public class ApplicationData {
             listHistory.remove(10);
         }
 
+        // Add it to approved list, if it was approved.
+        if (decision) {
+
+            // If it's already in the list, don't add it.
+            boolean isFoundInApproved = false;
+            if (!(listApproved == null) && !(listApproved.size() == 0)) {
+                for (RestaurantWithDecision currentRestaurant : listApproved) {
+                    if (currentRestaurant.getRestaurant().name().equals(businessToAdd.name())) {
+                        isFoundInApproved = true;
+                    }
+                }
+            }
+
+            if (!isFoundInApproved) {
+                if(listApproved==null)
+                    listApproved = new ArrayList<RestaurantWithDecision>();
+                listApproved.add(0, newRestaurantToAdd);
+            }
+
+        }
+
     }
 
     /**
      * Sets the data for the application
      * @param givenAD The given data
      */
-    public void setApplicationData (ApplicationData givenAD) {
+    public static void setApplicationData (ApplicationData givenAD) {
         applicationData = givenAD;
     }
 
@@ -67,6 +92,13 @@ public class ApplicationData {
         return listHistory;
     }
 
+    /**
+     * Gets the approved restaurants list.
+     * @return A List of RestaurantWithDecision objects
+     */
+    public List<RestaurantWithDecision> getListApproved() {
+        return listApproved;
+    }
 
     /**
      * Sets the History list
@@ -74,6 +106,21 @@ public class ApplicationData {
      */
     public void setListHistory(List<RestaurantWithDecision> listHistory) {
         this.listHistory = listHistory;
+    }
+
+    /**
+     * Resets restaurant history to empty.
+     * @return True if at least one element was cleared. False if else.
+     */
+    public boolean resetListHistory () {
+
+        boolean isEmpty = (this.listHistory.size() == 0);
+        this.listHistory = new ArrayList<RestaurantWithDecision>();
+
+        // If the list was empty, then return false.
+        return !(isEmpty);
+
+
     }
 
     /**
@@ -92,4 +139,11 @@ public class ApplicationData {
         this.listCurrentSearch = listCurrentSearch;
     }
 
+    public void setViewedInstructionsToTrue(){
+        instructionsViewed = true;
+    }
+
+    public boolean getViewedInstructions() {
+        return instructionsViewed;
+    }
 }
