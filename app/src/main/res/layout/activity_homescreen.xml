@@ -5,10 +5,9 @@
     android:orientation="vertical"
     tools:context=".HomeScreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-        <TextView
+    <TextView
             android:id="@+id/activity_homescreen_app_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,12 +16,13 @@
             android:textColor="#ffffff"
             android:maxLines="1"
             android:ellipsize="none"
-            android:text="CONNOISSEUR" />
+            android:text="CONNOISSEUR"
+        android:layout_above="@+id/activity_homescreen_layout_spinners"
+        android:layout_alignParentStart="true" />
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/activity_homescreen_layout_spinners"
-            android:layout_below="@+id/activity_homescreen_app_title"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -30,7 +30,9 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:gravity="center"
             android:orientation="horizontal"
-            android:background="#3a3a3a">
+            android:background="#3a3a3a"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
             <Spinner
                 android:id="@+id/activity_homescreen_spinner_Distance"
@@ -52,23 +54,42 @@
 
         </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/activity_homescreen_layout_buttons"
-            android:layout_below="@+id/activity_homescreen_layout_spinners"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:gravity="end">
+        android:paddingRight="@dimen/activity_horizontal_margin"
+            android:gravity="end"
+        android:layout_marginBottom="69dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
-            <Button
-                android:id="@+id/activity_homescreen_searchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEARCH"
-                android:onClick="goToRestaurantSelection"/>
 
-        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_homescreen_helpButton"
+
+        android:text=" ? "
+        android:textColor="#FFFFFF"
+        android:textSize="21sp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/circle"
+        android:onClick="onHelp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp" />
+
+    <Button
+            android:id="@+id/activity_homescreen_searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEARCH"
+            android:onClick="goToRestaurantSelection"
+        android:layout_below="@+id/activity_homescreen_layout_spinners"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
 

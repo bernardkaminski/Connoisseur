@@ -175,6 +175,11 @@ public class HomeScreen extends ActionBarActivity {
 
 	}
 
+	//on help click, help popup activates
+	public void onHelp (View view) {
+		showNewUserInstructions();
+	}
+
 	private void showNewUserInstructions() {
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		dialog.setTitle("User Instructions");
