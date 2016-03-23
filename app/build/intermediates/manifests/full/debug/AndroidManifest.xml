@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="ca.mcgill.ecse428.restoguys.connoisseur"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        <activity
+            android:name="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- APPROVED RESTAURANTS -->
+        <activity
+            android:name="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.ApprovedRestaurants"
+            android:label="@string/title_activity_approved_restaurants"
+            android:parentActivityName="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection" />
+        </activity>
+
+        <!-- HISTORY -->
+        <activity
+            android:name="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.History"
+            android:label="@string/title_activity_history"
+            android:parentActivityName="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".viewcontroller.RestaurantSelection" />
+        </activity>
+
+        <!-- RESTAURANT DETAILS -->
+        <activity android:name="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantDetails" >
+        </activity>
+
+        <!-- RESTAURANT SELECTION -->
+        <!-- Don't change anything in this activity -Nicolas. -->
+        <activity
+            android:name="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection"
+            android:label="@string/title_activity_restaurant_selection"
+            android:launchMode="singleTop"
+            android:parentActivityName="ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".viewcontroller.HomeScreen" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>

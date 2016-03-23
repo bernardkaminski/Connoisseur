@@ -1,0 +1,47 @@
+-injars /Users/macuser/Connoisseur/app/build/intermediates/transforms/jarMerging/debug/jars/1/1f/combined.jar
+-outjars /Users/macuser/Connoisseur/app/build/intermediates/multi-dex/debug/componentClasses.jar
+
+-libraryjars /Users/macuser/Library/Android/sdk/build-tools/21.1.2/lib/shrinkedAndroid.jar
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontwarn
+-printconfiguration /Users/macuser/Connoisseur/app/build/intermediates/multi-dex/debug/components.flags
+
+
+-keep class android.support.multidex.MultiDexApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen {
+    <init>();
+}
+
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.ApprovedRestaurants {
+    <init>();
+}
+
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.History {
+    <init>();
+}
+
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantDetails {
+    <init>();
+}
+
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection {
+    <init>();
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}

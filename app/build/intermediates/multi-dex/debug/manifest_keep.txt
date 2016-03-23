@@ -1,0 +1,15 @@
+-keep class android.support.multidex.MultiDexApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.HomeScreen { <init>(); }
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.ApprovedRestaurants { <init>(); }
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.History { <init>(); }
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantDetails { <init>(); }
+-keep class ca.mcgill.ecse428.restoguys.connoisseur.viewcontroller.RestaurantSelection { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

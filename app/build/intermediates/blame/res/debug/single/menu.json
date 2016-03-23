@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/macuser/Connoisseur/app/build/intermediates/res/merged/debug/menu/menu_approved_restaurants.xml",
+        "source": "/Users/macuser/Connoisseur/app/src/main/res/menu/menu_approved_restaurants.xml"
+    },
+    {
+        "merged": "/Users/macuser/Connoisseur/app/build/intermediates/res/merged/debug/menu/menu_history.xml",
+        "source": "/Users/macuser/Connoisseur/app/src/main/res/menu/menu_history.xml"
+    },
+    {
+        "merged": "/Users/macuser/Connoisseur/app/build/intermediates/res/merged/debug/menu/menu_restaurant_selection.xml",
+        "source": "/Users/macuser/Connoisseur/app/src/main/res/menu/menu_restaurant_selection.xml"
+    }
+]
